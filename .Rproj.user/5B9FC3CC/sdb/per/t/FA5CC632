@@ -1,0 +1,16 @@
+{
+    "contents" : "Package: eyeball\nTitle: Approximations for the real part of the leading eigenvalue of large\n    community matrices.\nVersion: 0.1\nAuthors@R: \"Stefano Allesina <sallesina@uchicago.edu> [aut, cre]\"\nDescription: This package provides a set of functions to: a) Build food webs b)\n    Parameterize community matrices for the food webs c) Approximate the\n    leading eigenvalue of a community matrix using tools from Random Matrix\n    Theory.\nDepends:\n    R (>= 3.0.2),\n    MASS,\n    igraph,\n    ggplot2\nLicense: What license is it under?\nLazyData: true\nImports:\n    \n",
+    "created" : 1411674483062.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3561835383",
+    "id" : "FA5CC632",
+    "lastKnownWriteTime" : 1412464971,
+    "path" : "~/RPackages/eyeball/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "dcf"
+}
