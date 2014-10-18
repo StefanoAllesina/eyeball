@@ -1,13 +1,3 @@
-eye.getellipse <- function(centerx, radiusx, radiusy){
-  thetas <- seq(pi / 2.0, 0.0, length = 1000)
-  xbase <- radiusx * cos(thetas)
-  ybase <- radiusy * sin(thetas)
-  x <- c(xbase, rev(xbase), -xbase, rev(-xbase))
-  y <- c(ybase, rev(-ybase), -ybase, rev(ybase))
-  return(data.frame(Real = x + centerx, Imaginary = y))
-}
-
-
 eye.approximate.ReL1 <- function(M, calculate.eigenvalues = TRUE){
   S <- dim(M)[1]
   NOffDiag <- S * (S - 1)
@@ -29,9 +19,9 @@ eye.approximate.ReL1 <- function(M, calculate.eigenvalues = TRUE){
   sigmaL <- sqrt(sigmaL2)
   rhoUL <- (sum(M * t(M)) / NOffDiag - muU * muL) / (sigmaU * sigmaL)
   ## May's stability criterion
-  ReL1.May <- max((S-1) * mu, sqrt(S * sigma2) - mu) + d
+  ReL1.May <- max((S-1) * mu, sqrt((S-1) * sigma2) - mu) + d
   ## Tang et al. stability criterion
-  ReL1.TangEtAl <- max((S-1) * mu, sqrt(S * sigma2) * (1 + rho) - mu) + d
+  ReL1.TangEtAl <- max((S-1) * mu, sqrt((S-1) * sigma2) * (1 + rho) - mu) + d
   ## Eyeball approximation
   ## radius for the spectrum of A
   coeff <- (-muL / muU)^(1 / S)
@@ -49,6 +39,7 @@ eye.approximate.ReL1 <- function(M, calculate.eigenvalues = TRUE){
   ## Here's an approximation for alpha: this is purely numerical
   alpha <- (2 * geommean + aritmean) * aritmean * (S-1) / 3
   r.b <- (alpha + rhoUL * sigmaU * sigmaL * (S-1)) / sqrt(alpha)
+  s.b <- (alpha - rhoUL * sigmaU * sigmaL * (S-1)) / sqrt(alpha)
   ReL1.eyeball <- max(Re.eigenA.extreme, r.b + Re.eigenA.middle) + d
   ReL1.observed <- NULL
   M.eigenvalues <- NULL
@@ -58,16 +49,28 @@ eye.approximate.ReL1 <- function(M, calculate.eigenvalues = TRUE){
     ReL1.observed <- max(Re(ev))
     M.eigenvalues <- ev
     ## Debug
-    print(plot(ev, xlim = c(min(Re(ev)), 1 + max(c(ReL1.observed, ReL1.May, ReL1.TangEtAl)))))
-    print(abline(v = ReL1.observed, col = "black"))
-    print(abline(v = ReL1.May, col = "red"))
-    print(abline(v = ReL1.TangEtAl, col = "blue"))
-    print(abline(v = ReL1.eyeball, col = "pink"))
+    #print(plot(ev, xlim = c(min(Re(ev)), 1 + max(c(ReL1.observed, ReL1.May, ReL1.TangEtAl)))))
+    #print(abline(v = ReL1.observed, col = "black"))
+    #print(abline(v = ReL1.May, col = "red"))
+    #print(abline(v = ReL1.TangEtAl, col = "blue"))
+    #print(abline(v = ReL1.eyeball, col = "pink"))
     ## End Debug
   }
-  return(list(ReL1.observed = ReL1.observed,
+  return(list(M = M,
+              M.eigenvalues = M.eigenvalues,
+              ReL1.observed = ReL1.observed,
               ReL1.May = ReL1.May,
               ReL1.TangEtAl = ReL1.TangEtAl,
-              ReL1.eyeball = ReL1.eyeball
-              M.eigenvalues = M.eigenvalues))
+              ReL1.eyeball = ReL1.eyeball,
+              May.stats = list(S = S, V = sigma2, E = mu, d = d),
+              TangEtAl.stats = list(S = S, V = sigma2, E = mu, rho = rho, d = d),
+              eyeball.stats = list(S = S, muU = muU, muL = muL,
+                                   sigmaU = sigmaU, sigmaL = sigmaL,
+                                   rhoUL = rhoUL,
+                                   d = d,
+                                   radius.A = r.a,
+                                   center.A = c.a,
+                                   radius.B.h = r.b,
+                                   radius.B.v = s.b)
+              ))
 }
