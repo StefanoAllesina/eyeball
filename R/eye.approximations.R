@@ -51,21 +51,23 @@ eye.approximate.ReL1 <- function(M, calculate.eigenvalues = TRUE){
   r.b <- (alpha + rhoUL * sigmaU * sigmaL * (S-1)) / sqrt(alpha)
   ReL1.eyeball <- max(Re.eigenA.extreme, r.b + Re.eigenA.middle) + d
   ReL1.observed <- NULL
+  M.eigenvalues <- NULL
   ## if desired, calculate the actual ReL1.observed
   if (calculate.eigenvalues == TRUE){
     ev <- eigen(M, only.values = TRUE, symmetric = FALSE)$values
     ReL1.observed <- max(Re(ev))
+    M.eigenvalues <- ev
+    ## Debug
     print(plot(ev, xlim = c(min(Re(ev)), 1 + max(c(ReL1.observed, ReL1.May, ReL1.TangEtAl)))))
     print(abline(v = ReL1.observed, col = "black"))
     print(abline(v = ReL1.May, col = "red"))
     print(abline(v = ReL1.TangEtAl, col = "blue"))
     print(abline(v = ReL1.eyeball, col = "pink"))
-    ## plot circle for A
-    coordinatescircle <- eye.getellipse(c.a, r.a, r.a)
-    lines(coordinatescircle$Real, coordinatescircle$Imaginary, col = "purple")
+    ## End Debug
   }
   return(list(ReL1.observed = ReL1.observed,
               ReL1.May = ReL1.May,
               ReL1.TangEtAl = ReL1.TangEtAl,
-              ReL1.eyeball = ReL1.eyeball))
+              ReL1.eyeball = ReL1.eyeball
+              M.eigenvalues = M.eigenvalues))
 }

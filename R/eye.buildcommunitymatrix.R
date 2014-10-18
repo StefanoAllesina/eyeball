@@ -23,13 +23,13 @@ eye.parameterize.M <- function(FW,
                                         sigmay = sigmay,
                                         rhoxy = rhoxy)
     }
-    if (distribution.pairs == "Normal"){
-      my.pairs <- eye.pairs.from.normal(NumPairs = NumPairs,
-                                        mux = mux,
-                                        muy = muy,
-                                        sigmax = sigmax,
-                                        sigmay = sigmay,
-                                        rhoxy = rhoxy)
+    if (distribution.pairs == "FourCorner"){
+      my.pairs <- eye.pairs.from.fourcorner(NumPairs = NumPairs,
+                                          mux = mux,
+                                          muy = muy,
+                                          sigmax = sigmax,
+                                          sigmay = sigmay,
+                                          rhoxy = rhoxy)
     }
   }
   M[FW$links] <- my.pairs[ , 1]
