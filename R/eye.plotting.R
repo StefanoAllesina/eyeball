@@ -49,16 +49,20 @@ eye.plot.approximations <- function(Approx, only.bulk = FALSE){
   ev.polygon <- rbind(ev.polygon, tmp)
   ## Now draw the eigenvalues and the approximations
   pl <- pl + geom_polygon(data = ev.polygon, aes(Real, Imaginary, colour = Type), fill = NA) +
-    geom_point(data = ev.extra, aes(Real, Imaginary, colour = Type), shape = 1, size = 2)
+    geom_point(data = ev.extra, aes(Real, Imaginary, colour = Type), shape = 1, size = 2, show_guide = FALSE)
   ## and cut the plot
   if (only.bulk == FALSE) {
-    pl <- pl + coord_cartesian(xlim = 1.25 * range(Re(Approx$M.eigenvalues)),
-                              ylim = 1.25 * range(Im(Approx$M.eigenvalues)))
+    pl <- pl + coord_cartesian(xlim = 1.05 * range(c(bulkRe, Re(Approx$M.eigenvalues))),
+                              ylim = 1.05 * range(c(bulkIm, Im(Approx$M.eigenvalues))))
   } else {
     ## Cut according to the polygons
     pl <- pl + coord_cartesian(xlim = 1.05 * bulkRe,
                                ylim = 1.05 * bulkIm)
   }
+  ## Legend stuff
+  pl <- pl + labs(colour = "Approximation") + theme(legend.position = "bottom")
+  ## colour stuff
+  pl <- pl + scale_colour_brewer(palette = "Set1")
   print(pl)
   return(pl)
 }

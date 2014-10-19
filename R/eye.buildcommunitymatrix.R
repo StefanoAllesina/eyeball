@@ -39,14 +39,14 @@ eye.parameterize.M <- function(FW,
   return(M)
 }
 
-eye.buildfoodweb.and.parameterize.M <- function(foodweb.model,
+eye.buildfoodweb.and.parameterize.M <- function(foodweb.model = "Cascade",
                                                 S = 100,
                                                 C = 0.1,
                                                 distribution.pairs = "Normal",
-                                                mux = -1,
-                                                muy = 0.5,
-                                                sigmax = 1/4,
-                                                sigmay = 1/4,
+                                                mux = -3,
+                                                muy = 1.5,
+                                                sigmax = 1,
+                                                sigmay = 0.75,
                                                 rhoxy = -2/3,
                                                 mu.diagonal = 0,
                                                 sigma.diagonal = 0){
