@@ -1,4 +1,7 @@
 eye.approximate.ReL1 <- function(M, calculate.eigenvalues = TRUE){
+  if (calculate.eigenvalues == TRUE){
+    ev <- eigen(M, only.values = TRUE, symmetric = FALSE)$values
+  }
   S <- dim(M)[1]
   NOffDiag <- S * (S - 1)
   ## First, deal with diagonal elements
@@ -45,7 +48,6 @@ eye.approximate.ReL1 <- function(M, calculate.eigenvalues = TRUE){
   M.eigenvalues <- NULL
   ## if desired, calculate the actual ReL1.observed
   if (calculate.eigenvalues == TRUE){
-    ev <- eigen(M, only.values = TRUE, symmetric = FALSE)$values
     ReL1.observed <- max(Re(ev))
     M.eigenvalues <- ev
     ## Debug

@@ -41,10 +41,10 @@ eye.plot.approximations <- function(Approx, only.bulk = FALSE){
   bulkIm <- range(ev.polygon$Imaginary)
   ## Circle and Ellipse for eyeball approximation
   st <- Approx$eyeball.stats
-  tmp <- eye.ellipse.df(st$center.A, st$radius.A, st$radius.A)
+  tmp <- eye.ellipse.df(st$center.A + st$d, st$radius.A, st$radius.A)
   tmp$Type <- "eyeball, A"
   ev.polygon <- rbind(ev.polygon, tmp)
-  tmp <- eye.ellipse.df(st$radius.A + st$center.A, st$radius.B.h, st$radius.B.v)
+  tmp <- eye.ellipse.df(st$radius.A + st$center.A + st$d, st$radius.B.h, st$radius.B.v)
   tmp$Type <- "eyeball, shifted B"
   ev.polygon <- rbind(ev.polygon, tmp)
   ## Now draw the eigenvalues and the approximations
