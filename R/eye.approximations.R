@@ -37,10 +37,8 @@ eye.approximate.ReL1 <- function(M, calculate.eigenvalues = TRUE){
   thetak <- pi / S
   Re.eigenA.extreme <- (1 + (x^(1/S) * cos(thetak) -1) * (1 + x) / (1 + x^(2/ S) - 2 * x^(1/S) * cos(thetak))) * -muU
   ## Now spectrum of B
-  aritmean <- mean(c(sigmaU, sigmaL))
-  geommean <- sqrt(sigmaU * sigmaL)
-  ## Here's an approximation for alpha: this is purely numerical
-  alpha <- (2 * geommean + aritmean) * aritmean * (S-1) / 3
+  ## Approximation of alpha
+  alpha <- S * (sigmaU^2 - sigmaL) / log(sigmaL^2 / sigmaU^2)
   r.b <- (alpha + rhoUL * sigmaU * sigmaL * (S-1)) / sqrt(alpha)
   s.b <- (alpha - rhoUL * sigmaU * sigmaL * (S-1)) / sqrt(alpha)
   ReL1.eyeball <- max(Re.eigenA.extreme, r.b + Re.eigenA.middle) + d
