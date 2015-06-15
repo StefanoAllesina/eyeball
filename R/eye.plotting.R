@@ -1,3 +1,4 @@
+#' @export
 eye.ellipse.df <- function(centerx, radiusx, radiusy){
   thetas <- seq(pi / 2.0, 0.0, length = 1000)
   xbase <- radiusx * cos(thetas)
@@ -7,7 +8,7 @@ eye.ellipse.df <- function(centerx, radiusx, radiusy){
   return(data.frame(Real = x + centerx, Imaginary = y))
 }
 
-
+#' @export
 eye.plot.approximations <- function(Approx, only.bulk = FALSE){
   ## Check if the eigenvalues of M have been computed already
   if (is.null(Approx$M.eigenvalues)){

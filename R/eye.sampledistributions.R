@@ -6,6 +6,9 @@
 #' @param sigmax The desired standard deviation for the first marginal distribution
 #' @param sigmay The desired standard deviation for the second marginal distribution
 #' @param rhoxy The desired correlation
+#'
+#' @export
+#'
 #' @return A NumPairs x 2 matrix of interaction strengths sampled from the distribution
 #' @examples
 #' mypairs <- eye.pairs.from.normal() # default values
@@ -35,6 +38,9 @@ eye.pairs.from.normal <- function(NumPairs = 10,
 #' @param sigmax The desired standard deviation for the first marginal distribution
 #' @param sigmay The desired standard deviation for the second marginal distribution
 #' @param rhoxy The desired correlation
+#'
+#' @export
+#'
 #' @return A NumPairs x 2 matrix of interaction strengths sampled from the distribution
 #' @examples
 #' mypairs <- eye.pairs.from.fourcorner() # default values
@@ -57,6 +63,9 @@ eye.pairs.from.fourcorner <- function(NumPairs = 10,
 #' @param NumPairs The number of pairs to sample
 #' @param Empirical.Distribution A Nx2 matrix with the effects of consumers on resources
 #'                                in the first column and those of resources on consumers in the second.
+#'
+#' @export
+#'
 #' @return A NumPairs x 2 matrix of interaction strengths sampled from the distribution
 #' @examples
 #' mypairs <- eye.pairs.from.empirical(100, matrix(runif(20), 10, 2))

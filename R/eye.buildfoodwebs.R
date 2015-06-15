@@ -5,6 +5,9 @@
 #' preceding species.
 #' @param S The number of species (integer)
 #' @param C The desired connectance (between 0 and 1)
+#'
+#' @export
+#'
 #' @return A connected (one piece) food web of connectance close to the desired value.
 #' The food web is a list containing:
 #' \describe{
@@ -64,7 +67,10 @@ eye.foodweb.cascade <- function(S = 100, C = 0.25){
 #' adjacent species.
 #' @param S The number of species (integer)
 #' @param C The desired connectance (between 0 and 1)
-#' @return A connected (one piece) food web of connectance close to the desired value.
+#'
+#' @export
+#'
+#' @return A food web
 #' The food web is a list containing:
 #' \describe{
 #' \item{$links}{The trophic links from resource to consumer (L x 2 matrix)}
@@ -165,6 +171,13 @@ eye.foodweb.niche <- function(S = 100, C = 0.25){
 #' Remove self-loops and double edges
 #' @param filename A text file containing the adjacency matrix (binary, rows = resources, cols = consumers) of a food web
 #' The food web is a list containing:
+#'
+#' @export
+#'
+#' @return
+#'
+#' The food web is a list containing:
+#'
 #' \describe{
 #' \item{$links}{The trophic links from resource to consumer (L x 2 matrix)}
 #' \item{$S}{The number of species}
@@ -176,8 +189,6 @@ eye.foodweb.niche <- function(S = 100, C = 0.25){
 #' All the self-loops and double arrows (a eats b, b eats a) are removed. If the food web contains
 #' no cycles, then it is sorted that all the coefficients would be in the upper-triangular part
 #' of the corresponding adjacency matrix.
-#' @examples
-#' FW <- eye.foodweb.file("myadjacencymat.txt")
 eye.foodweb.file <- function(filename){
   ## Build the adjacency matrix
   K <- (as.matrix(read.table(filename, header = FALSE)) > 0) * 1

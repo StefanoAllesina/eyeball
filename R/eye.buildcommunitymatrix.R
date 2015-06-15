@@ -1,3 +1,5 @@
+#' @export
+#'
 eye.parameterize.M <- function(FW,
                                distribution.pairs = "Normal",
                                mux = -1,
@@ -39,6 +41,10 @@ eye.parameterize.M <- function(FW,
   return(M)
 }
 
+#' @export
+#' @import igraph
+#' @import MASS
+#' @import ggplot2
 eye.buildfoodweb.and.parameterize.M <- function(foodweb.model = "Cascade",
                                                 S = 100,
                                                 C = 0.1,

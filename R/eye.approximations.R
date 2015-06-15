@@ -1,3 +1,4 @@
+#' @export
 eye.approximate.ReL1 <- function(M, calculate.eigenvalues = TRUE){
   if (calculate.eigenvalues == TRUE){
     ev <- eigen(M, only.values = TRUE, symmetric = FALSE)$values
