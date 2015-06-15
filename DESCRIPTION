@@ -8,11 +8,9 @@ Description: This package provides a set of functions to: a) Build food webs b)
     leading eigenvalue of a community matrix using tools from Random Matrix
     Theory.
 Depends:
-    R (>= 3.0.2),
-    MASS,
-    igraph,
-    ggplot2
 License: What license is it under?
 LazyData: true
 Imports:
-    
+    MASS,
+    igraph,
+    ggplot2
