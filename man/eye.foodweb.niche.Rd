@@ -3,23 +3,23 @@
 \alias{eye.foodweb.niche}
 \title{Builds a food web according to the niche model}
 \usage{
-eye.foodweb.niche(S = 100, C = 0.25)
+eye.foodweb.niche(size = 100, connectance = 0.25)
 }
 \arguments{
-\item{S}{The number of species (integer)}
+\item{size}{The number of species (integer)}
 
-\item{C}{The desired connectance (between 0 and 1)}
+\item{connectance}{The desired connectance (between 0 and 1)}
 }
 \value{
 A food web
 The food web is a list containing:
 \describe{
 \item{$links}{The trophic links from resource to consumer (L x 2 matrix)}
-\item{$S}{The number of species}
+\item{$size}{The number of species}
 \item{$L}{The number of links}
-\item{$C}{The connectance L / (S choose 2)}
-\item{$Model}{A code for the model used to generate the food web}
-\item{$Cycles}{Boolean, whether cycles are present}
+\item{$connectance}{The connectance L / (size choose 2)}
+\item{$model}{A code for the model used to generate the food web}
+\item{$cycles}{Boolean, whether cycles are present}
 }
 All the self-loops and double arrows (a eats b, b eats a) are removed. If the food web contains
 no cycles, then it is sorted that all the coefficients would be in the upper-triangular part
@@ -30,12 +30,12 @@ the function will call itself recursively. If too many recursions are performed,
 }
 \description{
 The niche model is described in Williams and Martinez, Nature 2000.
-The species are sorted in order from 1...S and each species consumes a set of
+The species are sorted in order from 1...size and each species consumes a set of
 adjacent species.
 }
 \examples{
-FW <- eye.foodweb.niche() # S = 100, C = 0.25
+FW <- eye.foodweb.niche() # size = 100, connectance = 0.25
 FW <- eye.foodweb.niche(30, 0.2)
-FW <- eye.foodweb.niche(S = 250, C = 0.314)
+FW <- eye.foodweb.niche(size = 250, connectance = 0.314)
 }
 

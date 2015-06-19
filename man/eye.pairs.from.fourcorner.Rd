@@ -4,11 +4,11 @@
 \title{Sample pairs of interactions from the "Four-Corner" distribution described
 in Allesina et al. 2014}
 \usage{
-eye.pairs.from.fourcorner(NumPairs = 10, mux = -1, muy = 0.5,
+eye.pairs.from.fourcorner(num_pairs = 10, mux = -1, muy = 0.5,
   sigmax = 1/4, sigmay = 1/4, rhoxy = -2/3)
 }
 \arguments{
-\item{NumPairs}{The number of pairs to sample}
+\item{num_pairs}{The number of pairs to sample}
 
 \item{mux}{The desired mean for the first marginal distribution}
 
@@ -21,7 +21,7 @@ eye.pairs.from.fourcorner(NumPairs = 10, mux = -1, muy = 0.5,
 \item{rhoxy}{The desired correlation}
 }
 \value{
-A NumPairs x 2 matrix of interaction strengths sampled from the distribution
+A num_pairs x 2 matrix of interaction strengths sampled from the distribution
 }
 \description{
 Sample pairs of interactions from the "Four-Corner" distribution described
@@ -29,6 +29,9 @@ in Allesina et al. 2014
 }
 \examples{
 mypairs <- eye.pairs.from.fourcorner() # default values
-mypairs <- eye.pairs.from.fourcorner(NumPairs = 120)
+mypairs <- eye.pairs.from.fourcorner(450)
+mypairs <- eye.pairs.from.fourcorner(num_pairs = 450)
+mypairs <- eye.pairs.from.fourcorner(num_pairs = 450, mux = 0, muy = 0,
+           sigmax = 1, sigmay = 1, rhoxy = 0) # as for May's matrices
 }
 

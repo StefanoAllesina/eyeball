@@ -3,16 +3,16 @@
 \alias{eye.pairs.from.empirical}
 \title{Sample pairs of interactions from an empirical distribution}
 \usage{
-eye.pairs.from.empirical(NumPairs = 10, Empirical.Distribution = NULL)
+eye.pairs.from.empirical(num_pairs = 10, empirical_distribution = NULL)
 }
 \arguments{
-\item{NumPairs}{The number of pairs to sample}
+\item{num_pairs}{The number of pairs to sample}
 
-\item{Empirical.Distribution}{A Nx2 matrix with the effects of consumers on resources
+\item{empirical_distribution}{A Nx2 matrix with the effects of consumers on resources
                                in the first column and those of resources on consumers in the second.}
 }
 \value{
-A NumPairs x 2 matrix of interaction strengths sampled from the distribution
+A num_pairs x 2 matrix of interaction strengths sampled from the distribution
 }
 \description{
 Sample pairs of interactions from an empirical distribution

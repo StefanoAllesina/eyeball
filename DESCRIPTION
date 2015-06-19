@@ -1,6 +1,6 @@
 Package: eyeball
 Version: 0.1
-Date: 2015-06-15
+Date: 2015-06-19
 Title: Approximations for the real part of the leading eigenvalue of large
     community matrices.
 Description: This package provides a set of functions to: a) Build food webs b)

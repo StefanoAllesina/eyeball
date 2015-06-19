@@ -14,11 +14,11 @@ The food web is a list containing:
 
 \describe{
 \item{$links}{The trophic links from resource to consumer (L x 2 matrix)}
-\item{$S}{The number of species}
+\item{$size}{The number of species}
 \item{$L}{The number of links}
-\item{$C}{The connectance L / (S choose 2)}
-\item{$Model}{A code for the model used to generate the food web}
-\item{$Cycles}{Boolean, whether cycles are present}
+\item{$connectance}{The connectance L / (size choose 2)}
+\item{$model}{A code for the model used to generate the food web}
+\item{$cycles}{Boolean, whether cycles are present}
 }
 All the self-loops and double arrows (a eats b, b eats a) are removed. If the food web contains
 no cycles, then it is sorted that all the coefficients would be in the upper-triangular part
