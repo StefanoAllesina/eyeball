@@ -1,6 +1,35 @@
+#' Calculates various approximations for the real part of the leading eigenvalue
+#' of the community matrix M.
+#'
+#' It returns the expectation for the real part of the rightmost eigenvalue of M
+#' according to May (Nature 1972), Tang et al (Ecology Letters 2014), and
+#' Allesina et al. (Nature Communications 2015) derivations.
+#'
+#'
+#' @param M The community matrix. Note that for the Allesina et al. (eyeball) approximation, M should contain (almost) no
+#'        positive coefficients in the upper triangular part and (almost) no negative coefficients in the lower-triangular
+#'        part
+#' @param calculate_eigenvalues (TRUE by default) calculate the actual eigenvalues of M and return them
+#'
+#' @return A list composed of:
+#' \describe{
+#' \item{$M}{The community matrix}
+#' \item{$M.eigenvalues}{The eigenvalues of M (if calculate_eigenvalues = TRUE)}
+#' \item{$ReL1.observed }{The actual real part of the rightmost eigenvalue of M}
+#' \item{$ReL1.May }{The prediction according to May's approximation}
+#' \item{$ReL1.TangEtAl}{The prediction according to Tang et al. approximation}
+#' \item{$ReL1.eyeball}{The prediction according to the "eyeball" approach in Allesina et al. }
+#' \item{$May.stats}{List containing the relevant statistics for computing May's approximation}
+#' \item{$TangEtAl.stats}{List containing the relevant statistics for computing the approximation of Tang et al.}
+#' \item{$eyeball.stats}{List containing the relevant statistics for computing the eyeball approximation of Allesina et al.}
+#' }
+#'
+#' @examples
+#' M <- eye.parameterize.M(eye.foodweb.cascade())
+#' eye.approximate.ReL1(M)
 #' @export
-eye.approximate.ReL1 <- function(M, calculate.eigenvalues = TRUE){
-  if (calculate.eigenvalues == TRUE){
+eye.approximate.ReL1 <- function(M, calculate_eigenvalues = TRUE){
+  if (calculate_eigenvalues == TRUE){
     ev <- eigen(M, only.values = TRUE, symmetric = FALSE)$values
   }
   S <- dim(M)[1]
@@ -46,16 +75,9 @@ eye.approximate.ReL1 <- function(M, calculate.eigenvalues = TRUE){
   ReL1.observed <- NULL
   M.eigenvalues <- NULL
   ## if desired, calculate the actual ReL1.observed
-  if (calculate.eigenvalues == TRUE){
+  if (calculate_eigenvalues == TRUE){
     ReL1.observed <- max(Re(ev))
     M.eigenvalues <- ev
-    ## Debug
-    #print(plot(ev, xlim = c(min(Re(ev)), 1 + max(c(ReL1.observed, ReL1.May, ReL1.TangEtAl)))))
-    #print(abline(v = ReL1.observed, col = "black"))
-    #print(abline(v = ReL1.May, col = "red"))
-    #print(abline(v = ReL1.TangEtAl, col = "blue"))
-    #print(abline(v = ReL1.eyeball, col = "pink"))
-    ## End Debug
   }
   return(list(M = M,
               M.eigenvalues = M.eigenvalues,
